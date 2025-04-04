@@ -1,1 +1,58 @@
-<img src="images/logo.png" alt="Sharma Ji Hotel">
+<!DOCTYPE html><html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sharma Ji Hotel & Family Restaurant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .navbar {
+            background-color: #800000;
+            padding: 10px;
+        }
+        .navbar img {
+            height: 80px;
+        }
+        .welcome {
+            margin-top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+        .hotel-name {
+            font-size: 36px;
+            font-weight: bold;
+            color: #800000;
+            margin: 10px 0;
+        }
+        .menu-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            background-color: #800000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .menu-button:hover {
+            background-color: #a00000;
+        }
+    </style>
+</head>
+<body><div class="navbar">
+    <img src="images/logo.png" alt="Sharma Ji Hotel">
+</div>
+
+<div class="welcome">Welcome to Sharma Ji Hotel & Family Restaurant</div>
+<div class="hotel-name">Sharma Ji Hotel & Family Restaurant</div>
+
+<button class="menu-button" onclick="location.href='menu.html'">Go to Menu</button>
+
+</body>
+</html>
