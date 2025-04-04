@@ -1,99 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Signup - Sharma Ji Hotel</title>
+  <meta charset="UTF-8">
+  <title>Signup | Sharma Ji Hotel</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #6B1B1B;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .signup-box {
-      background: #A52A2A;
-      padding: 30px;
-      border-radius: 10px;
-      width: 300px;
       text-align: center;
+      padding: 50px;
     }
     input, button {
-      margin: 10px 0;
       padding: 10px;
-      width: 90%;
-      border: none;
-      border-radius: 5px;
-    }
-    button {
-      background: #FFD700;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .hidden {
-      display: none;
-    }
-    .success {
-      color: #00FF00;
-    }
-    .error {
-      color: #FF6347;
+      font-size: 16px;
+      margin: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="signup-box">
-    <h2>Signup with Mobile</h2>
-    <input type="text" id="phone" placeholder="Enter Mobile Number" />
-    <button onclick="sendOTP()">Send OTP</button>
+  <h2>Signup with your Mobile Number</h2>
+  <input type="text" id="mobile" placeholder="Enter 10-digit Mobile Number" maxlength="10" />
+  <br>
+  <button onclick="signup()">Signup</button>
 
-    <div id="otpSection" class="hidden">
-      <input type="text" id="otp" placeholder="Enter OTP" />
-      <button onclick="verifyOTP()">Verify OTP</button>
-    </div>
-
-    <p id="message"></p>
-  </div>
+  <p id="status"></p>
 
   <script>
-    let actualOTP = "";
+    function signup() {
+      const mobile = document.getElementById("mobile").value.trim();
+      const status = document.getElementById("status");
 
-    function sendOTP() {
-      const phone = document.getElementById("phone").value;
-      if (phone.length !== 10) {
-        document.getElementById("message").innerHTML = "<span class='error'>Enter a valid 10-digit number</span>";
+      if (mobile.length !== 10 || isNaN(mobile)) {
+        status.innerText = "Please enter a valid 10-digit mobile number.";
         return;
       }
 
-      actualOTP = Math.floor(100000 + Math.random() * 900000).toString();
+      status.innerText = "Processing...";
 
-      fetch("https://script.google.com/macros/s/AKfycbz0WZyx3PBeHZSHI3-UvlT4GmAErZuR2Jwd26Gom7mwXw5KRjRnVZgN3Ax_4yfhJvAg/exec", {
-        method: "POST",
-        body: JSON.stringify({ phone, otp: actualOTP }),
-        headers: { "Content-Type": "application/json" }
+      fetch('https://script.google.com/macros/s/AKfycbzRhhp5uAiXOK6-vKy7NHM3-n9aXkO_aTo6L6PfUlf4PTO4EfxY--09Lb39gyRmaBk/exec', {
+        method: 'POST',
+        body: new URLSearchParams({ mobile: mobile })
       })
       .then(res => res.text())
-      .then(() => {
-        document.getElementById("otpSection").classList.remove("hidden");
-        document.getElementById("message").innerHTML = "OTP sent successfully!";
+      .then(data => {
+        status.innerText = "Signup successful! You can now access the menu.";
       })
-      .catch(() => {
-        document.getElementById("message").innerHTML = "<span class='error'>Failed to send OTP</span>";
+      .catch(err => {
+        status.innerText = "Something went wrong. Try again later.";
+        console.error(err);
       });
-    }
-
-    function verifyOTP() {
-      const enteredOTP = document.getElementById("otp").value;
-      if (enteredOTP === actualOTP) {
-        document.getElementById("message").innerHTML = "<span class='success'>Signup successful! Awaiting approval.</span>";
-      } else {
-        document.getElementById("message").innerHTML = "<span class='error'>Incorrect OTP</span>";
-      }
     }
   </script>
 </body>
