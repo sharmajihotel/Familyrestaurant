@@ -1,4 +1,3 @@
-<!-- menu.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,43 +22,104 @@
       text-align: center;
       color: #FFD700;
     }
+    input, button {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+    }
+    #checkBtn {
+      background-color: #FFD700;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
     .menu-item {
+      display: flex;
+      justify-content: space-between;
       padding: 10px;
       border-bottom: 1px solid white;
+    }
+    .payment-section {
+      margin-top: 30px;
+      background: #8B0000;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .payment-section h3 {
+      color: #FFD700;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Our Menu</h1>
+    <h1>Check Approval to View Menu</h1>
+    <input type="text" id="mobileInput" placeholder="Enter your mobile number">
+    <button id="checkBtn">Check Approval</button>
 
-    <div class="menu-item">Sev Bhaji</div>
-    <div class="menu-item">Sev Tamatar</div>
-    <div class="menu-item">Mix Veg</div>
-    <div class="menu-item">Aloo Gobi</div>
-    <div class="menu-item">Aloo Matar</div>
-    <div class="menu-item">Aloo Hing</div>
-    <div class="menu-item">Aloo Jeera</div>
-    <div class="menu-item">Dum Aloo</div>
-    <div class="menu-item">Aloo Masala</div>
-    <div class="menu-item">Matar Paneer</div>
-    <div class="menu-item">Paneer Butter Masala</div>
-    <div class="menu-item">Paneer Do Pyaza</div>
-    <div class="menu-item">Paneer Masala</div>
-    <div class="menu-item">Sada Paratha</div>
-    <div class="menu-item">Lachha Paratha</div>
-    <div class="menu-item">Aloo Paratha</div>
-    <div class="menu-item">Paneer Paratha</div>
-    <div class="menu-item">Mix Paratha</div>
-    <div class="menu-item">Poha</div>
-    <div class="menu-item">Sada Dal</div>
-    <div class="menu-item">Dal Tadka</div>
-    <div class="menu-item">Dal Makhani</div>
-    <div class="menu-item">Dal Fry</div>
-    <div class="menu-item">Sada Dahi</div>
-    <div class="menu-item">Dahi Fry</div>
-    <div class="menu-item">Sada Roti</div>
-    <div class="menu-item">Butter Roti</div>
+    <div id="menuSection" style="display:none;">
+      <h2 style="text-align:center; color:#FFD700;">Our Menu</h2>
+      <div class="menu-item"><span>Sev Bhaji</span></div>
+      <div class="menu-item"><span>Sev Tamatar</span></div>
+      <div class="menu-item"><span>Aloo Gobi</span></div>
+      <div class="menu-item"><span>Aloo Matar</span></div>
+      <div class="menu-item"><span>Aloo Jeera</span></div>
+      <div class="menu-item"><span>Dum Aloo</span></div>
+      <div class="menu-item"><span>Dal Tadka</span></div>
+      <div class="menu-item"><span>Dal Fry</span></div>
+      <div class="menu-item"><span>Dal Makhani</span></div>
+      <div class="menu-item"><span>Paneer Butter Masala</span></div>
+      <div class="menu-item"><span>Paneer Do Pyaza</span></div>
+      <div class="menu-item"><span>Mix Veg</span></div>
+      <div class="menu-item"><span>Poha</span></div>
+      <div class="menu-item"><span>Sada Roti</span></div>
+      <div class="menu-item"><span>Butter Roti</span></div>
+      <div class="menu-item"><span>Aloo Paratha</span></div>
+      <div class="menu-item"><span>Paneer Paratha</span></div>
+      <div class="menu-item"><span>Mix Paratha</span></div>
+
+      <div class="payment-section">
+        <h3>Payment Info</h3>
+        <p>Pay via UPI using:</p>
+        <p><strong>PhonePe / Google Pay / Paytm</strong></p>
+        <p><strong>UPI ID: 7426019308@paytm</strong></p>
+      </div>
+    </div>
+
+    <p id="statusMessage" style="text-align:center; margin-top:20px; font-weight:bold;"></p>
   </div>
+
+  <script>
+    document.getElementById('checkBtn').addEventListener('click', function() {
+      const mobile = document.getElementById('mobileInput').value.trim();
+      if (!mobile) {
+        alert('Please enter your mobile number');
+        return;
+      }
+
+      const url = `https://script.google.com/macros/s/AKfycbyEr1qAVRVZay-vzxt7V1P8g_L8NBvN8NQ1LZWo9EdgAuJMK9yTxLdrOnAESEzIKgp8/exec?mobile=${mobile}`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'Approved') {
+            document.getElementById('menuSection').style.display = 'block';
+            document.getElementById('statusMessage').innerText = '';
+          } else if (data.status === 'Not Found') {
+            document.getElementById('menuSection').style.display = 'none';
+            document.getElementById('statusMessage').innerText = 'Mobile number not found. Please signup first.';
+          } else {
+            document.getElementById('menuSection').style.display = 'none';
+            document.getElementById('statusMessage').innerText = 'Your request is under review. Please wait for approval.';
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById('statusMessage').innerText = 'Error checking approval status.';
+        });
+    });
+  </script>
 </body>
 </html>
