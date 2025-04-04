@@ -1,43 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Signup - Sharma Ji Hotel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Signup | Sharma Ji Hotel</title>
   <style>
-    body { font-family: Arial; text-align: center; padding: 30px; }
-    input { padding: 10px; font-size: 16px; margin: 10px; width: 80%; max-width: 300px; }
-    button { padding: 10px 20px; font-size: 16px; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      text-align: center;
+      padding: 40px;
+    }
+    input, button {
+      padding: 12px;
+      font-size: 16px;
+      margin: 10px;
+      width: 250px;
+    }
+    #msg {
+      margin-top: 20px;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
-  <h2>Signup to View Menu</h2>
-  <input type="text" id="mobile" placeholder="Enter Mobile Number" /><br>
-  <button onclick="submitMobile()">Signup</button>
+  <h2>Signup with Mobile Number</h2>
+  <input type="text" id="mobile" placeholder="Enter your 10-digit mobile number" maxlength="10">
+  <br>
+  <button onclick="signup()">Submit</button>
   <p id="msg"></p>
 
   <script>
-    function submitMobile() {
-      const mobile = document.getElementById('mobile').value.trim();
-      if (mobile.length !== 10 || isNaN(mobile)) {
-        document.getElementById("msg").innerText = "Enter valid 10-digit mobile number.";
+    const scriptURL = 'https://script.google.com/macros/s/143kjm1XvkTHott-o7Xc9sgA028VvgqBHc2N6tz2l0QxHge3ddwZzL-oc/exec';
+
+    function signup() {
+      const mobile = document.getElementById("mobile").value.trim();
+      const msg = document.getElementById("msg");
+
+      if (!/^\d{10}$/.test(mobile)) {
+        msg.textContent = "Please enter a valid 10-digit mobile number.";
         return;
       }
-      fetch("https://script.google.com/macros/s/143kjm1XvkTHott-o7Xc9sgA028VvgqBHc2N6tz2l0QxHge3ddwZzL-oc/exec", {
-        method: "POST",
+
+      msg.textContent = "Please wait...";
+
+      // 1. Send data for signup (auto-approval)
+      fetch(scriptURL, {
+        method: 'POST',
         body: JSON.stringify({ mobile: mobile }),
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
-      .then(res => res.text())
+      .then(() => {
+        // 2. Check approval status
+        return fetch(`${scriptURL}?mobile=${mobile}`);
+      })
+      .then(res => res.json())
       .then(data => {
-        document.getElementById("msg").innerText = "Signup Successful! Now you can view the Menu.";
-        localStorage.setItem("sharmaji_user", mobile);
-        setTimeout(() => {
-          window.location.href = "menu.html";
-        }, 1500);
+        if (data.status === "Approved") {
+          msg.textContent = "Signup successful! Redirecting to menu...";
+          setTimeout(() => {
+            window.location.href = "menu.html?mobile=" + mobile;
+          }, 2000);
+        } else {
+          msg.textContent = "Signup submitted. Waiting for approval...";
+        }
       })
       .catch(err => {
-        document.getElementById("msg").innerText = "Error! Try again.";
-        console.log(err);
+        console.error(err);
+        msg.textContent = "Something went wrong. Please try again.";
       });
     }
   </script>
