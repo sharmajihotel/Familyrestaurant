@@ -1,52 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Signup | Sharma Ji Hotel</title>
+  <title>Signup - Sharma Ji Hotel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-    }
-    input, button {
-      padding: 10px;
-      font-size: 16px;
-      margin: 10px;
-    }
+    body { font-family: Arial; text-align: center; padding: 30px; }
+    input { padding: 10px; font-size: 16px; margin: 10px; width: 80%; max-width: 300px; }
+    button { padding: 10px 20px; font-size: 16px; }
   </style>
 </head>
 <body>
-  <h2>Signup with your Mobile Number</h2>
-  <input type="text" id="mobile" placeholder="Enter 10-digit Mobile Number" maxlength="10" />
-  <br>
-  <button onclick="signup()">Signup</button>
-
-  <p id="status"></p>
+  <h2>Signup to View Menu</h2>
+  <input type="text" id="mobile" placeholder="Enter Mobile Number" /><br>
+  <button onclick="submitMobile()">Signup</button>
+  <p id="msg"></p>
 
   <script>
-    function signup() {
-      const mobile = document.getElementById("mobile").value.trim();
-      const status = document.getElementById("status");
-
+    function submitMobile() {
+      const mobile = document.getElementById('mobile').value.trim();
       if (mobile.length !== 10 || isNaN(mobile)) {
-        status.innerText = "Please enter a valid 10-digit mobile number.";
+        document.getElementById("msg").innerText = "Enter valid 10-digit mobile number.";
         return;
       }
-
-      status.innerText = "Processing...";
-
-      fetch('https://script.google.com/macros/s/AKfycbzRhhp5uAiXOK6-vKy7NHM3-n9aXkO_aTo6L6PfUlf4PTO4EfxY--09Lb39gyRmaBk/exec', {
-        method: 'POST',
-        body: new URLSearchParams({ mobile: mobile })
+      fetch("https://script.google.com/macros/s/143kjm1XvkTHott-o7Xc9sgA028VvgqBHc2N6tz2l0QxHge3ddwZzL-oc/exec", {
+        method: "POST",
+        body: JSON.stringify({ mobile: mobile }),
+        headers: { "Content-Type": "application/json" }
       })
       .then(res => res.text())
       .then(data => {
-        status.innerText = "Signup successful! You can now access the menu.";
+        document.getElementById("msg").innerText = "Signup Successful! Now you can view the Menu.";
+        localStorage.setItem("sharmaji_user", mobile);
+        setTimeout(() => {
+          window.location.href = "menu.html";
+        }, 1500);
       })
       .catch(err => {
-        status.innerText = "Something went wrong. Try again later.";
-        console.error(err);
+        document.getElementById("msg").innerText = "Error! Try again.";
+        console.log(err);
       });
     }
   </script>
