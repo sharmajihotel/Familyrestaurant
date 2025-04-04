@@ -6,10 +6,15 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #6B1B1B;
-            color: white;
             text-align: center;
-            padding: 20px;
+            color: white;
+        }
+        .logo {
+            width: 300px;
+            margin: 20px auto;
         }
         .container {
             max-width: 800px;
@@ -18,56 +23,27 @@
             padding: 20px;
             border-radius: 10px;
         }
-        h1 {
-            color: #FFD700;
-        }
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px solid white;
-        }
-        .order-button {
+        .order-btn {
             background: #FFD700;
             color: black;
+            padding: 10px 20px;
+            font-size: 18px;
             border: none;
-            padding: 5px 10px;
             cursor: pointer;
             border-radius: 5px;
-        }
-        .contact {
             margin-top: 20px;
         }
-        .contact a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            margin: 10px;
-            display: inline-block;
+        .order-btn:hover {
+            background: #FFA500;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Sharma Ji Hotel</h1>
-        <h2>Menu</h2>
-        <div class="menu-item"><span>Fry Momos - ₹140</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Manchurian (Dry & Gravy) - ₹160</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Honey Chilli Potato - ₹160</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Veg Chowmein - ₹160</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Cheese Noodles - ₹180</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Paneer Tikka - ₹220</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Butter Naan - ₹40</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Dal Makhani - ₹180</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Shahi Paneer - ₹220</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Mix Veg - ₹180</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Chhole Bhature - ₹100</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Cold Coffee - ₹120</span><button class="order-button">Order Now</button></div>
-        <div class="menu-item"><span>Gulab Jamun - ₹60</span><button class="order-button">Order Now</button></div>
-        <div class="contact">
-            <a href="tel:7426019308">📞 Call Us</a>
-            <a href="https://wa.me/7426019308">💬 WhatsApp</a>
-        </div>
+        <img src="logo.png" alt="Sharma Ji Hotel Logo" class="logo">
+        <h1>Welcome to Sharma Ji Hotel & Family Restaurant</h1>
+        <p>Enjoy our delicious food and great hospitality!</p>
+        <button class="order-btn">Order Now</button>
     </div>
 </body>
 </html>
