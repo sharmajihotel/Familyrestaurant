@@ -1,51 +1,56 @@
-# 🍽️ Sharma Ji Hotel - Family Restaurant
+<div align="center">
+  <img src="https://sharmajihotel.github.io/Familyrestaurant/logo.png" alt="Sharma Ji Hotel Logo" width="150"/>
 
-**स्वादिष्ट भोजन का घर - आपका स्वागत है Sharma Ji Hotel में!**  
-यह वेबसाइट ग्राहकों को हमारे मेनू से भोजन देखने, साइनअप करने और ऑर्डर देने की सुविधा देती है।
+  # **Welcome to Sharma Ji Hotel & Family Restaurant**
+  _Authentic taste of Rajasthan at your service!_
 
----
-
-## 🌟 Highlights
-
-- Home Page with Logo & Welcome Message  
-- Menu Page with Delicious Food List  
-- OTP-based Signup System (via Google Apps Script)  
-- Manual Approval System (stored in Google Sheets)  
-- "Order Now" Button Visible Only After Approval  
-- Payment via UPI (PhonePe / Google Pay / Paytm)  
-- Mobile-Friendly & Simple UI
+  ![Banner](https://sharmajihotel.github.io/Familyrestaurant/banner.jpg)
+</div>
 
 ---
 
-## 📋 Live Website
-
-[➡️ Visit Sharma Ji Hotel Website](https://sharmajihotel.github.io/Familyrestaurant/)
-
----
-
-## 🛠️ Built With
-
-- **HTML, CSS, JavaScript**  
-- **Google Sheets** (For data storage)  
-- **Google Apps Script** (For OTP & Approval logic)
+## **About Us**
+**Sharma Ji Hotel and Family Restaurant** is committed to bringing delicious home-style food to your plate with love and hygiene. Located at **NH 52 Malikpur, Shri Madhopur, Sikar**, we offer a full vegetarian menu perfect for family meals.
 
 ---
 
-## 📞 Contact Us
+## **FSSAI License Information**
+> **Government of Rajasthan – Food Safety and Standards Authority of India (FoSCOS)**
 
-- **Phone / WhatsApp:** [7426019308](tel:7426019308)  
-- **Email:** [sharmajihotelfamilyrestaurent@gmail.com](mailto:sharmajihotelfamilyrestaurent@gmail.com)  
-- **Location:** Rajasthan, India
-
----
-
-## ❤️ Special Thanks
-
-हमारे ग्राहकों का धन्यवाद, जिनकी वजह से Sharma Ji Hotel लगातार बढ़ रहा है।
+- **Reference Number**: `30241021117960173`
+- **Licensee**: **Sharma Ji Hotel and Family Restaurant**
+- **Category**: Registration [Rajasthan] – New Registration
+- **Valid Till**: **21-10-2024**
+- **Business Type**: Food Services - Restaurants
+- **Premises**: NH 52 Malikpur Th. Khandela, Sikar 332411
 
 ---
 
-## ⚖️ License
+## **Our Menu Highlights**
+- **Sabzis**: Sev Bhaji, Sev Tamatar, Aloo Gobi, Dum Aloo, Paneer Butter Masala
+- **Dals**: Sada Dal, Dal Tadka, Dal Fry, Dal Makhani
+- **Parathas**: Aloo, Mix, Paneer, Lachha
+- **Extras**: Poha, Dahi Fry, Sada Dahi, Sada Roti, Butter Roti
 
-This project is for Sharma Ji Hotel and open for learning/customization.  
-Feel free to fork, share, or enhance with credit.
+Explore full menu: [Click Here](https://sharmajihotel.github.io/Familyrestaurant/menu.html)
+
+---
+
+## **Contact Us**
+
+| Contact Type | Details |
+|--------------|---------|
+| **Phone / WhatsApp** | [+91 7426019308](tel:+917426019308) |
+| **Email** | [sharmajihotelfamilyrestaurent@gmail.com](mailto:sharmajihotelfamilyrestaurent@gmail.com) |
+| **Website** | [https://sharmajihotel.github.io/Familyrestaurant](https://sharmajihotel.github.io/Familyrestaurant) |
+
+---
+
+## **Feedback**
+Have suggestions or feedback? [Email Us](mailto:sharmajihotelfamilyrestaurent@gmail.com) – We’d love to hear from you!
+
+---
+
+<div align="center">
+  **Thank you for visiting Sharma Ji Hotel!**
+</div>
