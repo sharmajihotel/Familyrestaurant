@@ -1,44 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Menu - Sharma Ji Hotel</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: Arial; padding: 20px; }
-    .item { margin: 10px 0; }
-    .btn { padding: 5px 10px; margin-left: 10px; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    #menu, #waiting {
+      display: none;
+      margin-top: 20px;
+    }
+    .item {
+      margin: 5px 0;
+    }
   </style>
 </head>
 <body>
-  <h2>Menu</h2>
-  <div id="menuSection">Checking approval...</div>
+  <h1>Check Your Access to Menu</h1>
+  <p>Enter your mobile number:</p>
+  <input type="text" id="mobile" placeholder="Enter 10-digit mobile number">
+  <button onclick="checkStatus()">Check</button>
+
+  <div id="waiting">
+    <h3>Status: Waiting for approval...</h3>
+  </div>
+
+  <div id="menu">
+    <h2>Our Menu</h2>
+    <div class="item">Sev bhaji</div>
+    <div class="item">Sev tamatar</div>
+    <div class="item">Mix veg</div>
+    <div class="item">Aloo gobi</div>
+    <div class="item">Aloo matar</div>
+    <div class="item">Aloo hing</div>
+    <div class="item">Aloo jeera</div>
+    <div class="item">Dum aloo</div>
+    <div class="item">Aloo masala</div>
+    <div class="item">Matar paneer</div>
+    <div class="item">Paneer butter masala</div>
+    <div class="item">Paneer do pyaza</div>
+    <div class="item">Paneer masala</div>
+    <div class="item">Sada paratha</div>
+    <div class="item">Lachha paratha</div>
+    <div class="item">Aloo paratha</div>
+    <div class="item">Paneer paratha</div>
+    <div class="item">Mix paratha</div>
+    <div class="item">Poha</div>
+    <div class="item">Sada dal</div>
+    <div class="item">Dal tadka</div>
+    <div class="item">Dal makhani</div>
+    <div class="item">Dal fry</div>
+    <div class="item">Sada dahi</div>
+    <div class="item">Dahi fry</div>
+    <div class="item">Sada roti</div>
+    <div class="item">Butter roti</div>
+  </div>
 
   <script>
-    const mobile = localStorage.getItem("sharmaji_user");
-    if (!mobile) {
-      document.getElementById("menuSection").innerText = "Please signup first.";
-    } else {
-      fetch(`https://script.google.com/macros/s/143kjm1XvkTHott-o7Xc9sgA028VvgqBHc2N6tz2l0QxHge3ddwZzL-oc/exec?mobile=${mobile}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === "Approved") {
-          const items = [
-            "Sev Bhaji", "Mix Veg", "Aloo Gobi", "Paneer Butter Masala",
-            "Sada Roti", "Butter Roti", "Dal Fry", "Poha"
-          ];
-          let html = "";
-          items.forEach(item => {
-            html += `<div class='item'>${item} <button class='btn'>Order Now</button></div>`;
-          });
-          document.getElementById("menuSection").innerHTML = html;
-        } else {
-          document.getElementById("menuSection").innerText = "Waiting for Approval. Please try again later.";
-        }
-      })
-      .catch(err => {
-        document.getElementById("menuSection").innerText = "Error checking approval.";
-        console.log(err);
-      });
+    function checkStatus() {
+      const mobile = document.getElementById("mobile").value;
+
+      if (!/^\d{10}$/.test(mobile)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return;
+      }
+
+      fetch(`https://script.google.com/macros/s/AKfycbzSHpsLK-mKKcy2zubFSmiviznwu6MhXq6o3j38sXmi/exec?action=getStatus&mobile=${mobile}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === "Approved") {
+            document.getElementById("waiting").style.display = "none";
+            document.getElementById("menu").style.display = "block";
+          } else {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("waiting").style.display = "block";
+          }
+        })
+        .catch(err => {
+          alert("Error checking status. Try again later.");
+        });
     }
   </script>
 </body>
