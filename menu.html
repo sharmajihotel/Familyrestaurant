@@ -1,87 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Menu - Sharma Ji Hotel</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu | Sharma Ji Hotel</title>
   <style>
     body {
       font-family: sans-serif;
+      background: #fef6e4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #e45858;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8rem;
+    }
+    .menu-section {
       padding: 20px;
     }
-    #menu, #waiting {
-      display: none;
-      margin-top: 20px;
-    }
     .item {
-      margin: 5px 0;
+      background: white;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .item-name {
+      font-weight: bold;
+    }
+    .order-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .order-btn:hover {
+      background: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h1>Check Your Access to Menu</h1>
-  <p>Enter your mobile number:</p>
-  <input type="text" id="mobile" placeholder="Enter 10-digit mobile number">
-  <button onclick="checkStatus()">Check</button>
 
-  <div id="waiting">
-    <h3>Status: Waiting for approval...</h3>
+  <header>
+    Sharma Ji Hotel & Family Restaurant - Menu
+  </header>
+
+  <div class="menu-section">
+    <!-- Menu Items -->
+    <div class="item"><span class="item-name">Sev Bhaji</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Sev Tamatar</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Mix Veg</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Aloo Gobi</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Aloo Matar</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Aloo Hing</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Aloo Jeera</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Dum Aloo</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Aloo Masala</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Matar Paneer</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Paneer Butter Masala</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Paneer Do Pyaza</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Paneer Masala</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Sada Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Lachha Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Aloo Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Paneer Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Mix Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Poha</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Sada Dal</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Dal Tadka</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Dal Makhani</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Dal Fry</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Sada Dahi</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Dahi Fry</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Sada Roti</span><a href="payment.html" class="order-btn">Order</a></div>
+    <div class="item"><span class="item-name">Butter Roti</span><a href="payment.html" class="order-btn">Order</a></div>
   </div>
 
-  <div id="menu">
-    <h2>Our Menu</h2>
-    <div class="item">Sev bhaji</div>
-    <div class="item">Sev tamatar</div>
-    <div class="item">Mix veg</div>
-    <div class="item">Aloo gobi</div>
-    <div class="item">Aloo matar</div>
-    <div class="item">Aloo hing</div>
-    <div class="item">Aloo jeera</div>
-    <div class="item">Dum aloo</div>
-    <div class="item">Aloo masala</div>
-    <div class="item">Matar paneer</div>
-    <div class="item">Paneer butter masala</div>
-    <div class="item">Paneer do pyaza</div>
-    <div class="item">Paneer masala</div>
-    <div class="item">Sada paratha</div>
-    <div class="item">Lachha paratha</div>
-    <div class="item">Aloo paratha</div>
-    <div class="item">Paneer paratha</div>
-    <div class="item">Mix paratha</div>
-    <div class="item">Poha</div>
-    <div class="item">Sada dal</div>
-    <div class="item">Dal tadka</div>
-    <div class="item">Dal makhani</div>
-    <div class="item">Dal fry</div>
-    <div class="item">Sada dahi</div>
-    <div class="item">Dahi fry</div>
-    <div class="item">Sada roti</div>
-    <div class="item">Butter roti</div>
-  </div>
-
-  <script>
-    function checkStatus() {
-      const mobile = document.getElementById("mobile").value;
-
-      if (!/^\d{10}$/.test(mobile)) {
-        alert("Please enter a valid 10-digit mobile number.");
-        return;
-      }
-
-      fetch(`https://script.google.com/macros/s/AKfycbzSHpsLK-mKKcy2zubFSmiviznwu6MhXq6o3j38sXmi/exec?action=getStatus&mobile=${mobile}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.status === "Approved") {
-            document.getElementById("waiting").style.display = "none";
-            document.getElementById("menu").style.display = "block";
-          } else {
-            document.getElementById("menu").style.display = "none";
-            document.getElementById("waiting").style.display = "block";
-          }
-        })
-        .catch(err => {
-          alert("Error checking status. Try again later.");
-        });
-    }
-  </script>
 </body>
 </html>
