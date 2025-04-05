@@ -10,52 +10,57 @@
     }
     input, button {
       padding: 10px;
-      font-size: 16px;
       margin-top: 10px;
     }
-    #msg {
+    #success, #error {
       margin-top: 20px;
       font-weight: bold;
     }
+    #success { color: green; }
+    #error { color: red; }
   </style>
 </head>
 <body>
-  <h1>Signup for Menu Access</h1>
-  <p>Enter your 10-digit mobile number:</p>
-  <input type="text" id="mobile" placeholder="Enter mobile number">
+  <h1>Signup to View Menu</h1>
+  <p>Enter your mobile number:</p>
+  <input type="text" id="mobile" placeholder="Enter 10-digit mobile number">
   <br>
-  <button onclick="submitSignup()">Signup</button>
-  <div id="msg"></div>
+  <button onclick="submitForm()">Submit</button>
+
+  <div id="success"></div>
+  <div id="error"></div>
 
   <script>
-    function submitSignup() {
-      const mobile = document.getElementById("mobile").value.trim();
-      const msg = document.getElementById("msg");
+    function submitForm() {
+      const mobile = document.getElementById("mobile").value;
+      const success = document.getElementById("success");
+      const error = document.getElementById("error");
+
+      success.innerText = "";
+      error.innerText = "";
 
       if (!/^\d{10}$/.test(mobile)) {
-        msg.innerText = "Please enter a valid 10-digit mobile number.";
+        error.innerText = "Please enter a valid 10-digit mobile number.";
         return;
       }
 
-      msg.innerText = "Submitting... Please wait.";
-
-      fetch("https://script.google.com/macros/s/AKfycbzSHpsLK-mKKcy2zubFSmiviznwu6MhXq6o3j38sXmi/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbyQ4ZhHxehhsi_hw17cmgW9lU-FIa66Mw1ta7_UpGVUSxeiWblhnind-ru6MJdakeZLOg/exec", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ mobile })
-      })
-      .then(res => res.text())
-      .then(data => {
-        if (data === "Success") {
-          msg.innerText = "Signup successful! You are now approved.";
-        } else if (data === "Already Exists") {
-          msg.innerText = "You are already signed up and approved.";
-        } else {
-          msg.innerText = "Something went wrong. Please try again.";
+        body: JSON.stringify({ mobile: mobile }),
+        headers: {
+          "Content-Type": "application/json"
         }
       })
-      .catch(err => {
-        msg.innerText = "Server error. Please try again later.";
+      .then(res => res.text())
+      .then(response => {
+        if (response.toLowerCase().includes("success")) {
+          success.innerText = "Signup successful! You are now approved.";
+        } else {
+          error.innerText = "Something went wrong. Try again.";
+        }
+      })
+      .catch(() => {
+        error.innerText = "Server error. Try again later.";
       });
     }
   </script>
