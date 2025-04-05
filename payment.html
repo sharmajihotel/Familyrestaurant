@@ -2,71 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Payment - Sharma Ji Hotel</title>
+  <title>Order - Sharma Ji Hotel</title>
   <style>
     body {
       font-family: sans-serif;
-      background-color: #f9f9f9;
-      padding: 30px;
-      text-align: center;
-    }
-
-    h1 {
+      background-color: #f5f5dc;
       color: #333;
+      text-align: center;
+      padding: 20px;
     }
-
-    .payment-box {
-      background-color: white;
-      padding: 25px;
-      border-radius: 15px;
-      display: inline-block;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    h1 {
+      color: #d32f2f;
     }
-
-    .upi-number {
-      font-size: 24px;
-      font-weight: bold;
-      color: #1d8348;
-      margin: 15px 0;
+    .payment-option {
+      margin: 10px 0;
+      font-size: 18px;
     }
-
-    .apps img {
-      height: 50px;
-      margin: 10px;
+    #thankyou, #feedback {
+      display: none;
+      margin-top: 30px;
     }
-
-    button {
-      margin-top: 25px;
-      padding: 10px 20px;
+    textarea {
+      width: 80%;
+      padding: 10px;
       font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background-color: #007bff;
-      color: white;
-      cursor: pointer;
+      margin-top: 10px;
     }
-
-    button:hover {
-      background-color: #0056b3;
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 16px;
+      background-color: #388e3c;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
     }
   </style>
 </head>
 <body>
-  <div class="payment-box">
-    <h1>Thank you for your order!</h1>
-    <p>Please make payment to the UPI number below:</p>
+  <h1>Payment Options</h1>
+  <p>Pay to the following UPI number:</p>
 
-    <div class="upi-number">7426019308</div>
+  <div class="payment-option"><strong>Paytm / Google Pay / PhonePe:</strong> 7426019308</div>
 
-    <div class="apps">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Paytm_Logo.png" alt="Paytm">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Google_Pay_Logo.svg" alt="Google Pay">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/PhonePe_Logo.png" alt="PhonePe">
-    </div>
+  <button onclick="showThankYou()">I Have Paid</button>
 
-    <p>Use any UPI app to send payment.</p>
-
-    <button onclick="window.location.href='menu.html'">Back to Menu</button>
+  <div id="thankyou">
+    <h2>Thank you!</h2>
+    <p>कृपया कर Feedback ज़रूर दें</p>
   </div>
+
+  <div id="feedback">
+    <h3>Feedback</h3>
+    <textarea rows="4" placeholder="Write your feedback here..."></textarea>
+    <br>
+    <button onclick="submitFeedback()">Submit</button>
+  </div>
+
+  <script>
+    function showThankYou() {
+      document.getElementById('thankyou').style.display = 'block';
+      document.getElementById('feedback').style.display = 'block';
+    }
+
+    function submitFeedback() {
+      alert("Thank you for your feedback!");
+      // Here you can add code to send feedback to Google Sheet or email if needed
+    }
+  </script>
 </body>
 </html>
