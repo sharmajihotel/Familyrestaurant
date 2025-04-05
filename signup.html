@@ -2,76 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Signup | Sharma Ji Hotel</title>
+  <title>Signup - Sharma Ji Hotel</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #fff8e1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 80px;
+      font-family: sans-serif;
+      padding: 20px;
     }
-    h2 {
-      color: #c62828;
-    }
-    input[type="tel"] {
+    input, button {
       padding: 10px;
       font-size: 16px;
-      width: 250px;
-      margin-bottom: 15px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
+      margin-top: 10px;
     }
-    button {
-      padding: 10px 20px;
-      background-color: #c62828;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    #message {
+    #msg {
       margin-top: 20px;
       font-weight: bold;
-      color: green;
     }
   </style>
 </head>
 <body>
-  <h2>Signup to View Menu</h2>
-  <input type="tel" id="mobile" placeholder="Enter your mobile number" required />
+  <h1>Signup for Menu Access</h1>
+  <p>Enter your 10-digit mobile number:</p>
+  <input type="text" id="mobile" placeholder="Enter mobile number">
   <br>
-  <button onclick="submitMobile()">Submit</button>
-  <div id="message"></div>
+  <button onclick="submitSignup()">Signup</button>
+  <div id="msg"></div>
 
   <script>
-    function submitMobile() {
-      const mobile = document.getElementById("mobile").value;
-      const message = document.getElementById("message");
+    function submitSignup() {
+      const mobile = document.getElementById("mobile").value.trim();
+      const msg = document.getElementById("msg");
 
-      if (!mobile || mobile.length < 10) {
-        message.style.color = "red";
-        message.innerText = "Please enter a valid mobile number.";
+      if (!/^\d{10}$/.test(mobile)) {
+        msg.innerText = "Please enter a valid 10-digit mobile number.";
         return;
       }
 
-      fetch('https://script.google.com/macros/s/143kjm1XvkTHott-o7Xc9sgA028VvgqBHc2N6tz2l0QxHge3ddwZzL-oc/exec', {
-        method: 'POST',
-        body: JSON.stringify({ mobile }),
-        headers: { 'Content-Type': 'application/json' }
+      msg.innerText = "Submitting... Please wait.";
+
+      fetch("https://script.google.com/macros/s/AKfycbzSHpsLK-mKKcy2zubFSmiviznwu6MhXq6o3j38sXmi/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ mobile })
       })
-      .then(response => response.text())
+      .then(res => res.text())
       .then(data => {
-        message.style.color = "green";
-        message.innerText = "Signup successful! You are approved.";
-        document.getElementById("mobile").value = "";
+        if (data === "Success") {
+          msg.innerText = "Signup successful! You are now approved.";
+        } else if (data === "Already Exists") {
+          msg.innerText = "You are already signed up and approved.";
+        } else {
+          msg.innerText = "Something went wrong. Please try again.";
+        }
       })
-      .catch(error => {
-        message.style.color = "red";
-        message.innerText = "Error: Something went wrong.";
-        console.error(error);
+      .catch(err => {
+        msg.innerText = "Server error. Please try again later.";
       });
     }
   </script>
