@@ -1,72 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sharma Ji Hotel</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f3f3;
-    }
-
-    header {
-      background-color: #c0392b;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #6e2c2c; /* logo के जैसा गहरा लाल-भूरा */
       color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      background-color: #e74c3c;
-      padding: 10px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
+      align-items: center;
       text-align: center;
-      padding: 40px;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 40px;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: white;
+      color: #6e2c2c;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 12px;
+      transition: background-color 0.3s;
+    }
+
+    a.button:hover {
+      background-color: #ffccbc;
+      color: #6e2c2c;
     }
 
     footer {
-      background-color: #c0392b;
-      color: white;
-      text-align: center;
-      padding: 10px;
+      margin-top: 60px;
+      font-size: 14px;
+      color: #e0e0e0;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to Sharma Ji Hotel</h1>
-    <p>Authentic Taste of Rajasthan</p>
-  </header>
 
-  <nav>
-    <a href="menu.html">Menu</a>
-    <a href="help.html">Help</a>
-    <a href="feedback.html">Feedback</a>
-  </nav>
-
-  <main>
-    <h2>Delicious Food Served Fresh</h2>
-    <p>Click on the menu to see what we offer!</p>
-  </main>
+  <h1>Welcome to Sharma Ji Hotel</h1>
+  <p>Pure Taste | Homemade Feel | Family Restaurant</p>
+  <a class="button" href="menu.html">View Menu</a>
 
   <footer>
-    <p>Contact us at 7426019308 | sharmajihotelfamilyrestaurent@gmail.com</p>
+    © 2025 Sharma Ji Hotel. All rights reserved.
   </footer>
+
 </body>
 </html>
