@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation - Sharma Ji Hotel</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fef6e4;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    .payment-box {
+      background-color: #fff;
+      border: 2px solid #ff914d;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .upi-box {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 10px 0;
+      color: #e76f51;
+    }
+    .thankyou {
+      font-size: 20px;
+      font-weight: bold;
+      color: green;
+      margin-top: 20px;
+    }
+    .feedback-box {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      resize: vertical;
+      border-radius: 5px;
+      border: 1px solid #999;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #ff914d;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e76f51;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Payment Options</h1>
+
+  <div class="payment-box">
+    <h2>Pay via UPI</h2>
+    <div class="upi-box">Paytm / Google Pay / PhonePe</div>
+    <div class="upi-box">UPI Number: <strong>7426019308</strong></div>
+    <button onclick="showThankYou()">Pay Now</button>
+  </div>
+
+  <div id="thankyou-section" style="display: none;">
+    <p class="thankyou">Thank you. कृपया कर Feedback ज़रूर दें</p>
+
+    <div class="feedback-box">
+      <h3>Feedback</h3>
+      <textarea id="feedback" rows="4" placeholder="अपना अनुभव यहाँ लिखें..."></textarea>
+      <button onclick="submitFeedback()">Submit Feedback</button>
+    </div>
+  </div>
+
+  <script>
+    function showThankYou() {
+      document.getElementById("thankyou-section").style.display = "block";
+    }
+
+    function submitFeedback() {
+      const feedback = document.getElementById("feedback").value.trim();
+      if (feedback === "") {
+        alert("कृपया पहले फीडबैक लिखें।");
+        return;
+      }
+      alert("धन्यवाद! आपका फीडबैक सेव कर लिया गया है।");
+      document.getElementById("feedback").value = "";
+    }
+  </script>
+
+</body>
+</html>
