@@ -1,0 +1,15 @@
+title: Sharma Ji Hotel email: sharmajihotelfamilyrestaurent@gmail.com description: >- Welcome to Sharma Ji Hotel and Family Restaurant. Delicious food, great ambiance, and amazing service! baseurl: "" url: "https://sharmajihotel.github.io/Familyrestaurant" theme: jekyll-theme-primer
+
+Build settings
+
+github: is_project_page: true repository_url: https://github.com/sharmajihotel/Familyrestaurant
+
+Exclude files from Jekyll processing
+
+exclude:
+
+README.md
+
+LICENSE
+
+
