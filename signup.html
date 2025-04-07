@@ -1,67 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <title>Signup - Sharma Ji Hotel</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
   <style>
     body {
-      font-family: sans-serif;
-      padding: 20px;
+      background-color: #f9f3e7;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
     }
     input, button {
+      margin: 10px;
       padding: 10px;
-      margin-top: 10px;
+      font-size: 16px;
     }
-    #success, #error {
-      margin-top: 20px;
-      font-weight: bold;
+    #otp-section {
+      display: none;
     }
-    #success { color: green; }
-    #error { color: red; }
   </style>
 </head>
 <body>
-  <h1>Signup to View Menu</h1>
-  <p>Enter your mobile number:</p>
-  <input type="text" id="mobile" placeholder="Enter 10-digit mobile number">
-  <br>
-  <button onclick="submitForm()">Submit</button>
+  <h1>Sharma Ji Hotel - OTP Login</h1>
+  <div id="login-section">
+    <input type="text" id="phone" placeholder="Enter 10-digit mobile number" />
+    <div id="recaptcha-container"></div>
+    <button onclick="sendOTP()">Send OTP</button>
+  </div>
 
-  <div id="success"></div>
-  <div id="error"></div>
+  <div id="otp-section">
+    <input type="text" id="otp" placeholder="Enter OTP" />
+    <button onclick="verifyOTP()">Verify OTP</button>
+  </div>
 
   <script>
-    function submitForm() {
-      const mobile = document.getElementById("mobile").value;
-      const success = document.getElementById("success");
-      const error = document.getElementById("error");
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCK6a9BFBwrsFUKGjINP8CCxN7Vj3t1ncU",
+      authDomain: "sharma-ji-hotel.firebaseapp.com",
+      projectId: "sharma-ji-hotel",
+      storageBucket: "sharma-ji-hotel.appspot.com",
+      messagingSenderId: "312273770924",
+      appId: "1:312273770924:web:c3f6403d007c38de4fc209"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-      success.innerText = "";
-      error.innerText = "";
+    // reCAPTCHA
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      size: 'normal',
+      callback: response => console.log('Recaptcha Resolved'),
+      'expired-callback': () => console.log('Recaptcha expired')
+    });
+    recaptchaVerifier.render();
 
-      if (!/^\d{10}$/.test(mobile)) {
-        error.innerText = "Please enter a valid 10-digit mobile number.";
-        return;
-      }
+    let confirmationResult;
 
-      fetch("https://script.google.com/macros/s/AKfycbyQ4ZhHxehhsi_hw17cmgW9lU-FIa66Mw1ta7_UpGVUSxeiWblhnind-ru6MJdakeZLOg/exec", {
-        method: "POST",
-        body: JSON.stringify({ mobile: mobile }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(res => res.text())
-      .then(response => {
-        if (response.toLowerCase().includes("success")) {
-          success.innerText = "Signup successful! You are now approved.";
-        } else {
-          error.innerText = "Something went wrong. Try again.";
-        }
-      })
-      .catch(() => {
-        error.innerText = "Server error. Try again later.";
-      });
+    function sendOTP() {
+      const number = document.getElementById('phone').value;
+      if (!/^[6-9]\d{9}$/.test(number)) return alert('Enter valid 10-digit mobile number');
+
+      const phoneNumber = "+91" + number;
+      firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+        .then(res => {
+          confirmationResult = res;
+          document.getElementById('otp-section').style.display = 'block';
+          document.getElementById('login-section').style.display = 'none';
+        }).catch(err => alert(err.message));
+    }
+
+    function verifyOTP() {
+      const otp = document.getElementById('otp').value;
+      confirmationResult.confirm(otp).then(result => {
+        const user = result.user;
+        // Save to Google Sheet via Apps Script
+        fetch("https://script.google.com/macros/s/AKfycbxo7eiY9xzyVmmJ-pHR7tJ8_YqvmmwZDNjHNEg4jNhmJoBsW6y5Jo5UWltqfHuNXZ_k_Q/exec", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "signup",
+            mobile: user.phoneNumber
+          })
+        });
+        alert("Login Successful!");
+        window.location.href = "menu.html";
+      }).catch(err => alert("Wrong OTP"));
     }
   </script>
 </body>
