@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OTP Verification</title>
+</head>
+<body>
+  <h2>Phone Number Verification</h2>
+  <input type="text" id="phoneNumber" placeholder="Enter phone number" />
+  <button onclick="generateOTP()">Generate OTP</button>
+
+  <div id="otpSection" style="display:none;">
+    <p>OTP: <span id="otpDisplay"></span></p>
+    <p id="timer"></p>
+    <input type="text" id="otpInput" placeholder="Enter OTP" />
+    <button onclick="verifyOTP()">Verify OTP</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    let generatedOTP;
+    let timer;
+    let timeLeft = 30;
+
+    function generateOTP() {
+      const phone = document.getElementById('phoneNumber').value;
+      if (!phone) {
+        alert('Please enter phone number!');
+        return;
+      }
+
+      generatedOTP = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('otpDisplay').innerText = generatedOTP;
+      document.getElementById('otpSection').style.display = 'block';
+      document.getElementById('result').innerText = '';
+      timeLeft = 30;
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById('timer').innerText = 'OTP expired';
+          generatedOTP = null;
+        } else {
+          document.getElementById('timer').innerText = `OTP expires in ${timeLeft} seconds`;
+          timeLeft--;
+        }
+      }, 1000);
+    }
+
+    function verifyOTP() {
+      const enteredOTP = document.getElementById('otpInput').value;
+      if (parseInt(enteredOTP) === generatedOTP) {
+        document.getElementById('result').innerText = 'OTP verified successfully!';
+        clearInterval(timer);
+      } else {
+        document.getElementById('result').innerText = 'Invalid or expired OTP!';
+      }
+    }
+  </script>
+</body>
+</html>
