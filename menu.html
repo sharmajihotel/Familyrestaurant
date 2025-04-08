@@ -3,87 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu | Sharma Ji Hotel</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #fef6e4;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #e45858;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 1.8rem;
-    }
-    .menu-section {
-      padding: 20px;
-    }
-    .item {
-      background: white;
-      margin: 10px 0;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .item-name {
-      font-weight: bold;
-    }
-    .order-btn {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .order-btn:hover {
-      background: #0056b3;
-    }
-  </style>
+  <title>Menu - S.J Hotel Family Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <header>
-    Sharma Ji Hotel & Family Restaurant - Menu
-  </header>
-
-  <div class="menu-section">
-    <!-- Menu Items -->
-    <div class="item"><span class="item-name">Sev Bhaji</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Sev Tamatar</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Mix Veg</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Aloo Gobi</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Aloo Matar</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Aloo Hing</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Aloo Jeera</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Dum Aloo</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Aloo Masala</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Matar Paneer</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Paneer Butter Masala</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Paneer Do Pyaza</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Paneer Masala</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Sada Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Lachha Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Aloo Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Paneer Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Mix Paratha</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Poha</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Sada Dal</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Dal Tadka</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Dal Makhani</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Dal Fry</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Sada Dahi</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Dahi Fry</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Sada Roti</span><a href="payment.html" class="order-btn">Order</a></div>
-    <div class="item"><span class="item-name">Butter Roti</span><a href="payment.html" class="order-btn">Order</a></div>
+  <!-- 3 Dot Menu -->
+  <div class="menu-toggle" onclick="toggleMenu()">•••</div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="#">Version 1.0</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail Contact Us</a>
+    <a href="index.html" onclick="logout()">Log out</a>
   </div>
 
+  <div class="container">
+    <h1 style="font-family: 'Georgia', serif; color: #d4af37; text-shadow: 2px 2px #ff5757; font-size: 32px;">
+      S.J Hotel<br /><span style="color: #ff5757;">Family Restaurant</span>
+    </h1>
+
+    <h2>Our Full Menu</h2>
+
+    <!-- Special Thali Section -->
+    <h3>Special Thali</h3>
+    <ul>
+      <li>Special Dal Bati Churma — ₹450 (5 Bati, Desi Ghee, Dal, Churma, Chatni, Papad, Chach, 2 Rasgulla, Salad)</li>
+      <li>Dal Bati Churma — ₹250 (5 Bati, Dal, Chatni, Chach)</li>
+      <li>Sharma Ji Special Thali — ₹180 (5 Roti, Ek Sabji, Dal, Chach)</li>
+      <li>Sada Thali — ₹150 (5 Roti, Dal Fry, Sabji)</li>
+      <li>Special Thali — ₹200 (5 Roti, Sabji, Dal, Chach, Papad)</li>
+    </ul>
+
+    <!-- Sabji Section -->
+    <h3>Sabji (Full)</h3>
+    <ul>
+      <li>Sev Bhaji — ₹170</li>
+      <li>Sev Tamatar — ₹150</li>
+      <li>Sada Dal — ₹130</li>
+      <li>Dal Fry — ₹150</li>
+      <li>Dal Tadka — ₹160</li>
+      <li>Aloo Gobi — ₹190</li>
+      <li>Aloo Matar — ₹190</li>
+      <li>Aloo Hara Dhaniya — ₹190</li>
+      <li>Aloo Jeera — ₹170</li>
+      <li>Dum Aloo — ₹190</li>
+      <li>Aloo Do Pyaza — ₹190</li>
+      <li>Aloo Palak — ₹190</li>
+      <li>Hari Mirch Tipore — ₹50</li>
+      <li>Matar Paneer — ₹190</li>
+      <li>Paneer Butter Masala — ₹230</li>
+      <li>Paneer Lababdar — ₹230</li>
+      <li>Paneer Handi — ₹250</li>
+      <li>Paneer Kofta — ₹250</li>
+      <li>Paneer Do Pyaza — ₹230</li>
+      <li>Kadhai Paneer — ₹230 (Corrected!)</li>
+      <li>Veg Paneer — ₹210</li>
+      <li>Mix Veg — ₹190</li>
+    </ul>
+
+    <!-- Rice & Biryani -->
+    <h3>Rice & Biryani</h3>
+    <ul>
+      <li>Plain Rice — ₹90</li>
+      <li>Masala Rice — ₹130</li>
+      <li>Mix Veg Rice — ₹150</li>
+      <li>Veg Biryani — ₹170</li>
+      <li>Veg Masala — ₹190</li>
+      <li>Chana Masala — ₹230</li>
+      <li>Chana Fry — ₹190</li>
+    </ul>
+
+    <!-- Dairy -->
+    <h3>Dairy & Curd</h3>
+    <ul>
+      <li>Plain Curd — ₹90</li>
+      <li>Fried Curd — ₹130</li>
+    </ul>
+
+    <!-- Roti & Paratha -->
+    <h3>Roti & Paratha</h3>
+    <ul>
+      <li>Plain Roti — ₹12</li>
+      <li>Butter Roti — ₹15</li>
+      <li>Plain Paratha — ₹50</li>
+      <li>Aloo Paratha — ₹70</li>
+      <li>Aloo Pyaz Paratha — ₹80</li>
+      <li>Mix Veg Paratha — ₹110</li>
+      <li>Paneer Paratha — ₹120</li>
+    </ul>
+
+    <!-- Snacks -->
+    <h3>Snacks & Breakfast</h3>
+    <ul>
+      <li>Poha — ₹90 (Full Plate)</li>
+    </ul>
+
+    <!-- Beverages -->
+    <h3>Beverages</h3>
+    <ul>
+      <li>Special Chai — ₹40</li>
+      <li>Chai — ₹20</li>
+      <li>Coffee — ₹50</li>
+    </ul>
+
+    <button class="continue-btn" onclick="goToHome()">Back to Home</button>
+  </div>
+
+  <script>
+    function goToHome() {
+      window.location.href = 'home.html';
+    }
+
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('show');
+    }
+
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle')) {
+        const dropdown = document.getElementById('dropdownMenu');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
+      }
+    }
+
+    window.onload = function () {
+      if (!localStorage.getItem('isLoggedIn')) {
+        window.location.href = 'index.html';
+      }
+    }
+  </script>
 </body>
 </html>
