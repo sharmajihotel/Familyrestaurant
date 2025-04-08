@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback - S.J Hotel Family Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 3 Dot Menu -->
+  <div class="menu-toggle" onclick="toggleMenu()">•••</div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="#">Version 1.0</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail Contact Us</a>
+    <a href="index.html" onclick="logout()">Log out</a>
+  </div>
+
+  <div class="container">
+    <h1 style="font-family: 'Georgia', serif; color: #d4af37; text-shadow: 2px 2px #ff5757; font-size: 32px;">
+      S.J Hotel<br /><span style="color: #ff5757;">Family Restaurant</span>
+    </h1>
+
+    <h2>We value your feedback!</h2>
+
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" />
+
+    <br><br>
+
+    <label for="feedback">Your Feedback:</label>
+    <textarea id="feedback" rows="5" placeholder="Write your feedback here..."></textarea>
+
+    <br><br>
+
+    <button class="continue-btn" onclick="submitFeedback()">Submit Feedback</button>
+
+    <p id="confirmation" style="color: green; margin-top: 20px;"></p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('show');
+    }
+
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle')) {
+        const dropdown = document.getElementById('dropdownMenu');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
+      }
+    }
+
+    window.onload = function () {
+      if (!localStorage.getItem('isLoggedIn')) {
+        window.location.href = 'index.html';
+      }
+    }
+
+    function submitFeedback() {
+      const name = document.getElementById('name').value.trim();
+      const feedback = document.getElementById('feedback').value.trim();
+      const confirmation = document.getElementById('confirmation');
+
+      if (name && feedback) {
+        confirmation.textContent = `Thank you, ${name}! We have received your feedback.`;
+        confirmation.style.color = 'green';
+
+        // Future mein: Feedback Google Sheet ya WhatsApp pe save kar sakte hai
+      } else {
+        confirmation.textContent = 'Please fill in both your name and feedback.';
+        confirmation.style.color = 'red';
+      }
+    }
+  </script>
+</body>
+</html>
