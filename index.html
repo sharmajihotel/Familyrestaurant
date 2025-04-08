@@ -7,6 +7,15 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 3 Dot Menu -->
+  <div class="menu-toggle" onclick="toggleMenu()">•••</div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="#">Version 1.0</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail Contact Us</a>
+    <a href="index.html">Log out</a>
+  </div>
+
   <div class="container">
     <button class="skip">Skip</button>
 
@@ -25,7 +34,7 @@
         <span class="flag">🇮🇳</span>
         <input type="text" placeholder="+91 Enter Phone Number" id="phone" />
       </div>
-      <button class="continue-btn">Continue</button>
+      <button class="continue-btn" onclick="goToOtp()">Continue</button>
       <div class="or">or</div>
       <div class="social-login">
         <button class="google-btn">G</button>
@@ -38,6 +47,31 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    function goToOtp() {
+      const phone = document.getElementById('phone').value.trim();
+      if (phone === '' || phone.length < 10) {
+        alert('Please enter a valid phone number.');
+      } else {
+        // Save phone to localStorage for session management
+        localStorage.setItem('userPhone', phone);
+        window.location.href = 'otp.html';
+      }
+    }
+
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('show');
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle')) {
+        const dropdown = document.getElementById('dropdownMenu');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
+      }
+    }
+  </script>
 </body>
 </html>
