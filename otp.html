@@ -3,64 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OTP Verification</title>
+  <title>Enter OTP - S.J Hotel Family Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>Phone Number Verification</h2>
-  <input type="text" id="phoneNumber" placeholder="Enter phone number" />
-  <button onclick="generateOTP()">Generate OTP</button>
-
-  <div id="otpSection" style="display:none;">
-    <p>OTP: <span id="otpDisplay"></span></p>
+  <div class="container">
+    <h2>Enter OTP</h2>
+    <p>We've generated your OTP below. Enter it to proceed.</p>
+    <div class="otp-box">
+      <p>Your OTP: <strong id="generated-otp"></strong></p>
+    </div>
+    <input type="text" placeholder="Enter OTP" id="otp-input" maxlength="6" />
+    <button class="continue-btn" onclick="verifyOTP()">Verify OTP</button>
     <p id="timer"></p>
-    <input type="text" id="otpInput" placeholder="Enter OTP" />
-    <button onclick="verifyOTP()">Verify OTP</button>
-    <p id="result"></p>
+    <p class="resend">Didn't receive the OTP? <a href="#" onclick="generateOTP()">Regenerate OTP</a></p>
   </div>
 
   <script>
-    let generatedOTP;
-    let timer;
-    let timeLeft = 30;
+    let currentOTP;
+    let otpTimeout;
 
     function generateOTP() {
-      const phone = document.getElementById('phoneNumber').value;
-      if (!phone) {
-        alert('Please enter phone number!');
-        return;
-      }
-
-      generatedOTP = Math.floor(100000 + Math.random() * 900000);
-      document.getElementById('otpDisplay').innerText = generatedOTP;
-      document.getElementById('otpSection').style.display = 'block';
-      document.getElementById('result').innerText = '';
-      timeLeft = 30;
+      currentOTP = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('generated-otp').innerText = currentOTP;
       startTimer();
+      console.log("OTP generated:", currentOTP);
     }
 
     function startTimer() {
-      clearInterval(timer);
-      timer = setInterval(() => {
+      clearTimeout(otpTimeout);
+      let timeLeft = 30;
+      const timerDisplay = document.getElementById('timer');
+
+      const countdown = setInterval(() => {
         if (timeLeft <= 0) {
-          clearInterval(timer);
-          document.getElementById('timer').innerText = 'OTP expired';
-          generatedOTP = null;
+          clearInterval(countdown);
+          currentOTP = null;
+          timerDisplay.innerText = "OTP expired. Please regenerate.";
         } else {
-          document.getElementById('timer').innerText = `OTP expires in ${timeLeft} seconds`;
+          timerDisplay.innerText = "OTP expires in " + timeLeft + " seconds.";
           timeLeft--;
         }
       }, 1000);
     }
 
     function verifyOTP() {
-      const enteredOTP = document.getElementById('otpInput').value;
-      if (parseInt(enteredOTP) === generatedOTP) {
-        document.getElementById('result').innerText = 'OTP verified successfully!';
-        clearInterval(timer);
+      const userOTP = document.getElementById('otp-input').value.trim();
+      if (!currentOTP) {
+        alert('OTP expired. Please regenerate.');
+      } else if (userOTP == currentOTP) {
+        alert('OTP verified successfully!');
+        window.location.href = 'home.html'; // Aage ka page redirect
       } else {
-        document.getElementById('result').innerText = 'Invalid or expired OTP!';
+        alert('Invalid OTP. Please try again.');
       }
     }
+
+    // Auto-generate OTP on page load
+    window.onload = generateOTP;
   </script>
 </body>
 </html>
