@@ -1,118 +1,34 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sharma Ji Hotel & Family Restaurant</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: maroon;
-      color: white;
-      text-align: center;
-    }
-    .menu-icon {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 30px;
-      cursor: pointer;
-    }
-    .dropdown {
-      display: none;
-      position: absolute;
-      top: 60px;
-      right: 20px;
-      background-color: #fff;
-      color: maroon;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    .dropdown a {
-      display: block;
-      padding: 10px 20px;
-      text-decoration: none;
-      color: maroon;
-      border-bottom: 1px solid #ddd;
-    }
-    .dropdown a:last-child {
-      border-bottom: none;
-    }
-    h1 {
-      margin-top: 80px;
-      font-size: 34px;
-      line-height: 1.4;
-      color: white;
-      font-weight: bold;
-    }
-    .hotel-name {
-      font-size: 40px;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 20px;
-    }
-    .poetry {
-      margin: 30px auto;
-      font-size: 20px;
-      max-width: 90%;
-      white-space: pre-line;
-    }
-    .btn-container {
-      margin-top: 40px;
-    }
-    button {
-      padding: 15px 30px;
-      font-size: 18px;
-      margin: 10px;
-      border: none;
-      border-radius: 8px;
-      background-color: white;
-      color: maroon;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    button:hover {
-      background-color: #ffd6d6;
-    }
-  </style>
+  <title>S.J Hotel Family Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="container">
+    <button class="skip">Skip</button>
+    <img src="logo.png" alt="S.J Hotel Family Restaurant Logo" class="logo" />
+    <h2>India’s Favorite Family Dining & Delivery App</h2>
 
-  <div class="menu-icon" onclick="toggleDropdown()">☰</div>
-  <div class="dropdown" id="dropdown">
-    <a href="#">Logout</a>
-    <a href="#">Version</a>
-    <a href="#">Feedback</a>
-    <a href="#">Contact Us</a>
-    <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail</a>
+    <div class="login-box">
+      <label for="phone">Log in or sign up</label>
+      <div class="input-container">
+        <span class="flag">🇮🇳</span>
+        <input type="text" placeholder="+91 Enter Phone Number" id="phone" />
+      </div>
+      <button class="continue-btn">Continue</button>
+      <div class="or">or</div>
+      <div class="social-login">
+        <button class="google-btn">G</button>
+        <button class="more-btn">•••</button>
+      </div>
+      <p class="terms">
+        By continuing, you agree to our<br>
+        <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and <a href="#">Content Policy</a>.
+      </p>
+    </div>
   </div>
-
-  <h1>Welcome To</h1>
-  <div class="hotel-name">Sharma Ji Hotel & Family Restaurant</div>
-
-  <div class="poetry">
-    “जहाँ स्वाद में बसता है अपनापन,<br />
-    और हर रोटी में माँ के हाथों का स्पर्श।”<br /><br />
-    “खुशबू जो खींच लाए हर मुसाफिर को,<br />
-    वही है<br />
-    शर्मा जी होटल 🏨 & फैमिली रेस्टोरेंट।”<br /><br />
-    **NH-52, इंडियन पेट्रोल पंप के सामने, मालिपुरा रोड, राजस्थान**
-  </div>
-
-  <div class="btn-container">
-    <button onclick="window.location.href='menu.html'">Menu</button>
-    <button onclick="window.location.href='signup.html'">Signup</button>
-  </div>
-
-  <script>
-    function toggleDropdown() {
-      const dropdown = document.getElementById("dropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-  </script>
-
 </body>
 </html>
