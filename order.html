@@ -1,55 +1,89 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f8f8f8;
-        }
-        .container {
-            margin-top: 50px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .thank-you-message {
-            display: none;
-        }
-        .feedback-section {
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order - S.J Hotel Family Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container" id="payment-section">
-        <h2>Thank you for your order!</h2>
-        <p>Please make payment to the UPI number below:</p>
-        <h3 style="color: green;">7426019308</h3>
-        <button onclick="confirmPayment()" style="background-color: #28a745; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">I Have Paid</button>
-    </div><div class="container thank-you-message" id="thank-you-section">
-    <h2>Thank you! कृपया कर Feedback ज़रूर दें</h2>
-    <div class="feedback-section" id="feedback-section">
-        <textarea placeholder="Your feedback..." style="width: 100%; height: 80px;"></textarea>
-        <br>
-        <button style="background-color: #007bff; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">Submit Feedback</button>
-    </div>
-</div>
+  <!-- 3 Dot Menu -->
+  <div class="menu-toggle" onclick="toggleMenu()">•••</div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="#">Version 1.0</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail Contact Us</a>
+    <a href="index.html" onclick="logout()">Log out</a>
+  </div>
 
-<script>
-    function confirmPayment() {
-        document.getElementById("payment-section").style.display = "none";
-        document.getElementById("thank-you-section").style.display = "block";
-        document.getElementById("feedback-section").style.display = "block";
+  <div class="container">
+    <h1 style="font-family: 'Georgia', serif; color: #d4af37; text-shadow: 2px 2px #ff5757; font-size: 32px;">
+      S.J Hotel<br /><span style="color: #ff5757;">Family Restaurant</span>
+    </h1>
+
+    <h2>Place Your Order</h2>
+
+    <label for="item">Select Item:</label>
+    <select id="item">
+      <option value="Special Dal Bati Churma - 450">Special Dal Bati Churma — ₹450</option>
+      <option value="Paneer Butter Masala - 230">Paneer Butter Masala — ₹230</option>
+      <option value="Veg Biryani - 170">Veg Biryani — ₹170</option>
+      <option value="Poha - 90">Poha — ₹90</option>
+      <option value="Special Chai - 40">Special Chai — ₹40</option>
+      <!-- Tere menu se aur bhi add kar sakte hai -->
+    </select>
+
+    <br><br>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" value="1" min="1" />
+
+    <br><br>
+
+    <button class="continue-btn" onclick="placeOrder()">Place Order</button>
+
+    <p id="confirmation" style="color: green; margin-top: 20px;"></p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('show');
     }
-</script>
 
+    function logout() {
+      localStorage.removeItem('isLoggedIn');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle')) {
+        const dropdown = document.getElementById('dropdownMenu');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
+      }
+    }
+
+    window.onload = function () {
+      if (!localStorage.getItem('isLoggedIn')) {
+        window.location.href = 'index.html';
+      }
+    }
+
+    function placeOrder() {
+      const item = document.getElementById('item').value;
+      const quantity = document.getElementById('quantity').value;
+      const confirmation = document.getElementById('confirmation');
+
+      if (item && quantity > 0) {
+        confirmation.textContent = `Your order for ${quantity} x ${item} has been placed successfully!`;
+        confirmation.style.color = 'green';
+
+        // Yaha pe future me Google Sheet / WhatsApp / Payment integration kar sakte hai
+      } else {
+        confirmation.textContent = 'Please select an item and quantity.';
+        confirmation.style.color = 'red';
+      }
+    }
+  </script>
 </body>
 </html>
