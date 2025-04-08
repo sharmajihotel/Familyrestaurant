@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome - S.J Hotel Family Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 style="font-family: 'Georgia', serif; color: #d4af37; text-shadow: 2px 2px #ff5757; font-size: 32px;">
+      S.J Hotel<br /><span style="color: #ff5757;">Family Restaurant</span>
+    </h1>
+
+    <h2>Welcome to our family!</h2>
+    <p>Thank you for verifying your OTP.</p>
+    <p>Explore our delicious menu and place your order now!</p>
+
+    <button class="continue-btn" onclick="goToMenu()">Go to Menu</button>
+    <button class="more-btn" onclick="goToFeedback()">Give Feedback</button>
+  </div>
+
+  <script>
+    function goToMenu() {
+      window.location.href = 'menu.html'; // Aage menu page bana lenge
+    }
+
+    function goToFeedback() {
+      window.location.href = 'feedback.html'; // Aage feedback page bhi bana denge
+    }
+  </script>
+</body>
+</html>
