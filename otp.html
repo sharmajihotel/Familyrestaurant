@@ -3,11 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Enter OTP - S.J Hotel Family Restaurant</title>
+  <title>OTP Verification - S.J Hotel Family Restaurant</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- 3 Dot Menu -->
+  <div class="menu-toggle" onclick="toggleMenu()">•••</div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="#">Version 1.0</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail Contact Us</a>
+    <a href="index.html">Log out</a>
+  </div>
+
   <div class="container">
+    <h1 style="font-family: 'Georgia', serif; color: #d4af37; text-shadow: 2px 2px #ff5757; font-size: 32px;">
+      S.J Hotel<br /><span style="color: #ff5757;">Family Restaurant</span>
+    </h1>
+
     <h2>Enter OTP</h2>
     <p>We've generated your OTP below. Enter it to proceed.</p>
     <div class="otp-box">
@@ -21,21 +34,21 @@
 
   <script>
     let currentOTP;
-    let otpTimeout;
+    let countdown;
 
     function generateOTP() {
+      clearInterval(countdown);
       currentOTP = Math.floor(100000 + Math.random() * 900000);
       document.getElementById('generated-otp').innerText = currentOTP;
       startTimer();
-      console.log("OTP generated:", currentOTP);
+      console.log("Generated OTP:", currentOTP);
     }
 
     function startTimer() {
-      clearTimeout(otpTimeout);
       let timeLeft = 30;
       const timerDisplay = document.getElementById('timer');
 
-      const countdown = setInterval(() => {
+      countdown = setInterval(() => {
         if (timeLeft <= 0) {
           clearInterval(countdown);
           currentOTP = null;
@@ -53,9 +66,23 @@
         alert('OTP expired. Please regenerate.');
       } else if (userOTP == currentOTP) {
         alert('OTP verified successfully!');
-        window.location.href = 'home.html'; // Aage ka page redirect
+        localStorage.setItem('isLoggedIn', true);
+        window.location.href = 'home.html'; // Redirect to home page
       } else {
         alert('Invalid OTP. Please try again.');
+      }
+    }
+
+    function toggleMenu() {
+      document.getElementById('dropdownMenu').classList.toggle('show');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.matches('.menu-toggle')) {
+        const dropdown = document.getElementById('dropdownMenu');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
       }
     }
 
