@@ -3,41 +3,96 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome - S.J Hotel Family Restaurant</title>
+  <title>S.J Hotel Family Restaurant - Home</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('background.jpg'); /* apna background image laga dena */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 10px;
+      border-radius: 8px;
+      text-align: left;
+    }
+
+    .dropdown-menu a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .dropdown-menu.show {
+      display: block;
+    }
+
+    h1 {
+      margin-top: 150px;
+      font-size: 50px;
+      text-shadow: 2px 2px #ff0000;
+    }
+
+    p {
+      font-size: 18px;
+      margin-top: 20px;
+      text-shadow: 1px 1px #000;
+    }
+
+    .continue-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .continue-btn:hover {
+      background-color: #d40000;
+    }
+  </style>
 </head>
 <body>
+
   <!-- 3 Dot Menu -->
   <div class="menu-toggle" onclick="toggleMenu()">•••</div>
   <div class="dropdown-menu" id="dropdownMenu">
-    <a href="#">Version 1.0</a>
     <a href="feedback.html">Feedback</a>
+    <a href="#">Version 1.0</a>
     <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail Contact Us</a>
     <a href="index.html" onclick="logout()">Log out</a>
   </div>
 
-  <div class="container">
-    <h1 style="font-family: 'Georgia', serif; color: #d4af37; text-shadow: 2px 2px #ff5757; font-size: 32px;">
-      S.J Hotel<br /><span style="color: #ff5757;">Family Restaurant</span>
-    </h1>
+  <h1>Welcome to <br> S.J Hotel Family Restaurant</h1>
+  <p>Pure parivarik mahol ke saath, swadisht bhartiya vyanjan!</p>
 
-    <h2>Welcome to our family!</h2>
-    <p>Thank you for verifying your OTP.</p>
-    <p>Explore our delicious menu and place your order now!</p>
-
-    <button class="continue-btn" onclick="goToMenu()">Go to Menu</button>
-    <button class="more-btn" onclick="goToFeedback()">Give Feedback</button>
-  </div>
+  <button class="continue-btn" onclick="goToMenu()">Explore Menu</button>
 
   <script>
-    function goToMenu() {
-      window.location.href = 'menu.html';
-    }
-
-    function goToFeedback() {
-      window.location.href = 'feedback.html';
-    }
-
     function toggleMenu() {
       document.getElementById('dropdownMenu').classList.toggle('show');
     }
@@ -46,21 +101,16 @@
       localStorage.removeItem('isLoggedIn');
     }
 
-    window.onclick = function(event) {
-      if (!event.target.matches('.menu-toggle')) {
-        const dropdown = document.getElementById('dropdownMenu');
-        if (dropdown.classList.contains('show')) {
-          dropdown.classList.remove('show');
-        }
-      }
+    function goToMenu() {
+      window.location.href = 'menu.html';
     }
 
-    // Check session (security)
+    // Optional: Check session (future)
     window.onload = function () {
       if (!localStorage.getItem('isLoggedIn')) {
-        window.location.href = 'index.html';
+        // window.location.href = 'index.html';
       }
-    }
+    };
   </script>
 </body>
 </html>
