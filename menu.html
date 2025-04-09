@@ -1,140 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu - S.J Hotel Family Restaurant</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <!-- 3 Dot Menu -->
-  <div class="menu-toggle" onclick="toggleMenu()">•••</div>
-  <div class="dropdown-menu" id="dropdownMenu">
-    <a href="#">Version 1.0</a>
-    <a href="feedback.html">Feedback</a>
-    <a href="mailto:sharmajihotelfamilyrestaurent@gmail.com">Gmail Contact Us</a>
-    <a href="index.html" onclick="logout()">Log out</a>
+<!-- Fast Food Section -->
+<div class="menu-section">
+  <h2>Fast Food</h2>
+
+  <div class="menu-item">
+    <img src="frymomoz.jpg" alt="Fry Momoz" width="50">
+    <span>Fry Momoz — ₹140</span>
+    <input type="number" value="1" id="frymomozQty">
+    <button onclick="orderNow('Fry Momoz', 140, 'frymomozQty')">Order Now</button>
   </div>
 
-  <div class="container">
-    <h1 style="font-family: 'Georgia', serif; color: #d4af37; text-shadow: 2px 2px #ff5757; font-size: 32px;">
-      S.J Hotel<br /><span style="color: #ff5757;">Family Restaurant</span>
-    </h1>
-
-    <h2>Our Full Menu</h2>
-
-    <!-- Special Thali Section -->
-    <h3>Special Thali</h3>
-    <ul>
-      <li>Special Dal Bati Churma — ₹450 (5 Bati, Desi Ghee, Dal, Churma, Chatni, Papad, Chach, 2 Rasgulla, Salad)</li>
-      <li>Dal Bati Churma — ₹250 (5 Bati, Dal, Chatni, Chach)</li>
-      <li>Sharma Ji Special Thali — ₹180 (5 Roti, Ek Sabji, Dal, Chach)</li>
-      <li>Sada Thali — ₹150 (5 Roti, Dal Fry, Sabji)</li>
-      <li>Special Thali — ₹200 (5 Roti, Sabji, Dal, Chach, Papad)</li>
-    </ul>
-
-    <!-- Sabji Section -->
-    <h3>Sabji (Full)</h3>
-    <ul>
-      <li>Sev Bhaji — ₹170</li>
-      <li>Sev Tamatar — ₹150</li>
-      <li>Sada Dal — ₹130</li>
-      <li>Dal Fry — ₹150</li>
-      <li>Dal Tadka — ₹160</li>
-      <li>Aloo Gobi — ₹190</li>
-      <li>Aloo Matar — ₹190</li>
-      <li>Aloo Hara Dhaniya — ₹190</li>
-      <li>Aloo Jeera — ₹170</li>
-      <li>Dum Aloo — ₹190</li>
-      <li>Aloo Do Pyaza — ₹190</li>
-      <li>Aloo Palak — ₹190</li>
-      <li>Hari Mirch Tipore — ₹50</li>
-      <li>Matar Paneer — ₹190</li>
-      <li>Paneer Butter Masala — ₹230</li>
-      <li>Paneer Lababdar — ₹230</li>
-      <li>Paneer Handi — ₹250</li>
-      <li>Paneer Kofta — ₹250</li>
-      <li>Paneer Do Pyaza — ₹230</li>
-      <li>Kadhai Paneer — ₹230 (Corrected!)</li>
-      <li>Veg Paneer — ₹210</li>
-      <li>Mix Veg — ₹190</li>
-    </ul>
-
-    <!-- Rice & Biryani -->
-    <h3>Rice & Biryani</h3>
-    <ul>
-      <li>Plain Rice — ₹90</li>
-      <li>Masala Rice — ₹130</li>
-      <li>Mix Veg Rice — ₹150</li>
-      <li>Veg Biryani — ₹170</li>
-      <li>Veg Masala — ₹190</li>
-      <li>Chana Masala — ₹230</li>
-      <li>Chana Fry — ₹190</li>
-    </ul>
-
-    <!-- Dairy -->
-    <h3>Dairy & Curd</h3>
-    <ul>
-      <li>Plain Curd — ₹90</li>
-      <li>Fried Curd — ₹130</li>
-    </ul>
-
-    <!-- Roti & Paratha -->
-    <h3>Roti & Paratha</h3>
-    <ul>
-      <li>Plain Roti — ₹12</li>
-      <li>Butter Roti — ₹15</li>
-      <li>Plain Paratha — ₹50</li>
-      <li>Aloo Paratha — ₹70</li>
-      <li>Aloo Pyaz Paratha — ₹80</li>
-      <li>Mix Veg Paratha — ₹110</li>
-      <li>Paneer Paratha — ₹120</li>
-    </ul>
-
-    <!-- Snacks -->
-    <h3>Snacks & Breakfast</h3>
-    <ul>
-      <li>Poha — ₹90 (Full Plate)</li>
-    </ul>
-
-    <!-- Beverages -->
-    <h3>Beverages</h3>
-    <ul>
-      <li>Special Chai — ₹40</li>
-      <li>Chai — ₹20</li>
-      <li>Coffee — ₹50</li>
-    </ul>
-
-    <button class="continue-btn" onclick="goToHome()">Back to Home</button>
+  <div class="menu-item">
+    <img src="manchurian.jpg" alt="Manchurian" width="50">
+    <span>Manchurian (Dry & Gravy) — ₹160</span>
+    <input type="number" value="1" id="manchurianQty">
+    <button onclick="orderNow('Manchurian', 160, 'manchurianQty')">Order Now</button>
   </div>
 
-  <script>
-    function goToHome() {
-      window.location.href = 'home.html';
-    }
+  <div class="menu-item">
+    <img src="chillipaneer.jpg" alt="Chilli Paneer" width="50">
+    <span>Chilli Paneer (Dry & Gravy) — ₹160</span>
+    <input type="number" value="1" id="chillipaneerQty">
+    <button onclick="orderNow('Chilli Paneer', 160, 'chillipaneerQty')">Order Now</button>
+  </div>
 
-    function toggleMenu() {
-      document.getElementById('dropdownMenu').classList.toggle('show');
-    }
+  <div class="menu-item">
+    <img src="honeypotato.jpg" alt="Honey Chilli Potato" width="50">
+    <span>Honey Chilli Potato — ₹170</span>
+    <input type="number" value="1" id="honeypotatoQty">
+    <button onclick="orderNow('Honey Chilli Potato', 170, 'honeypotatoQty')">Order Now</button>
+  </div>
 
-    function logout() {
-      localStorage.removeItem('isLoggedIn');
-    }
+  <div class="menu-item">
+    <img src="chowmein.jpg" alt="Veg Chowmein" width="50">
+    <span>Veg Chowmein — ₹160</span>
+    <input type="number" value="1" id="chowmeinQty">
+    <button onclick="orderNow('Veg Chowmein', 160, 'chowmeinQty')">Order Now</button>
+  </div>
 
-    window.onclick = function(event) {
-      if (!event.target.matches('.menu-toggle')) {
-        const dropdown = document.getElementById('dropdownMenu');
-        if (dropdown.classList.contains('show')) {
-          dropdown.classList.remove('show');
-        }
-      }
-    }
+  <div class="menu-item">
+    <img src="cheesenoodel.jpg" alt="Cheese Noodle" width="50">
+    <span>Cheese Noodle — ₹160</span>
+    <input type="number" value="1" id="cheesenoodelQty">
+    <button onclick="orderNow('Cheese Noodle', 160, 'cheesenoodelQty')">Order Now</button>
+  </div>
 
-    window.onload = function () {
-      if (!localStorage.getItem('isLoggedIn')) {
-        window.location.href = 'index.html';
-      }
-    }
-  </script>
-</body>
-</html>
+  <div class="menu-item">
+    <img src="hakka.jpg" alt="Hakka Noodle" width="50">
+    <span>Hakka Noodle — ₹160</span>
+    <input type="number" value="1" id="hakkaQty">
+    <button onclick="orderNow('Hakka Noodle', 160, 'hakkaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="friesplain.jpg" alt="French Fries Plain" width="50">
+    <span>French Fries Plain — ₹150</span>
+    <input type="number" value="1" id="friesplainQty">
+    <button onclick="orderNow('French Fries Plain', 150, 'friesplainQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="masalafries.jpg" alt="Masala French Fries" width="50">
+    <span>Masala French Fries — ₹150</span>
+    <input type="number" value="1" id="masalafriesQty">
+    <button onclick="orderNow('Masala French Fries', 150, 'masalafriesQty')">Order Now</button>
+  </div>
+
+  </div><!-- Pizza Section -->
+<div class="menu-section">
+  <h2>Pizza</h2>
+
+  <div class="menu-item">
+    <img src="margheritapizza.jpg" alt="Cheese Margherita Pizza" width="50">
+    <span>Cheese Margherita Pizza — ₹180</span>
+    <input type="number" value="1" id="margheritapizzaQty">
+    <button onclick="orderNow('Cheese Margherita Pizza', 180, 'margheritapizzaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="doublecheesepizza.jpg" alt="Double Cheese Pizza" width="50">
+    <span>Double Cheese Pizza — ₹200</span>
+    <input type="number" value="1" id="doublecheesepizzaQty">
+    <button onclick="orderNow('Double Cheese Pizza', 200, 'doublecheesepizzaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="singletoppingpizza.jpg" alt="Single Topping Pizza" width="50">
+    <span>Single Topping Pizza — ₹250</span>
+    <input type="number" value="1" id="singletoppingpizzaQty">
+    <button onclick="orderNow('Single Topping Pizza', 250, 'singletoppingpizzaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="freshvegpizza.jpg" alt="Fresh Veg Pizza" width="50">
+    <span>Fresh Veg Pizza — ₹250</span>
+    <input type="number" value="1" id="freshvegpizzaQty">
+    <button onclick="orderNow('Fresh Veg Pizza', 250, 'freshvegpizzaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="farmhousepizza.jpg" alt="Farm House Pizza" width="50">
+    <span>Farm House Pizza — ₹270</span>
+    <input type="number" value="1" id="farmhousepizzaQty">
+    <button onclick="orderNow('Farm House Pizza', 270, 'farmhousepizzaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="paneerpizza.jpg" alt="Paneer Pizza" width="50">
+    <span>Paneer Pizza — ₹250</span>
+    <input type="number" value="1" id="paneerpizzaQty">
+    <button onclick="orderNow('Paneer Pizza', 250, 'paneerpizzaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="doubletoppingpizza.jpg" alt="Double Topping Pizza" width="50">
+    <span>Double Topping Pizza — ₹270</span>
+    <input type="number" value="1" id="doubletoppingpizzaQty">
+    <button onclick="orderNow('Double Topping Pizza', 270, 'doubletoppingpizzaQty')">Order Now</button>
+  </div>
+
+  <div class="menu-item">
+    <img src="otcpizza.jpg" alt="OTC Pizza" width="50">
+    <span>OTC Pizza — ₹150</span>
+    <input type="number" value="1" id="otcpizzaQty">
+    <button onclick="orderNow('OTC Pizza', 150, 'otcpizzaQty')">Order Now</button>
+  </div>
+
+</div>
